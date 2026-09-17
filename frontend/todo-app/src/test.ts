@@ -1,1 +1,1 @@
-import 'zone.js/testing';
+import "zone.js/testing";

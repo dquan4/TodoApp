@@ -33,13 +33,13 @@ The API starts at **http://localhost:5000** (Swagger UI opens automatically at `
 
 Endpoints:
 
-| Method | Route                    | Description              |
-|--------|---------------------------|--------------------------|
-| GET    | `/api/todos`              | List all tasks           |
-| POST   | `/api/todos`               | Create a task (`{ "title": "..." }`) |
-| PATCH  | `/api/todos/{id}/toggle`  | Toggle complete/incomplete |
-| PUT    | `/api/todos/{id}`         | Update title/status      |
-| DELETE | `/api/todos/{id}`         | Delete a task             |
+| Method | Route                    | Description                          |
+| ------ | ------------------------ | ------------------------------------ |
+| GET    | `/api/todos`             | List all tasks                       |
+| POST   | `/api/todos`             | Create a task (`{ "title": "..." }`) |
+| PATCH  | `/api/todos/{id}/toggle` | Toggle complete/incomplete           |
+| PUT    | `/api/todos/{id}`        | Update title/status                  |
+| DELETE | `/api/todos/{id}`        | Delete a task                        |
 
 CORS is pre-configured to allow requests from `http://localhost:4200` (the Angular dev server).
 

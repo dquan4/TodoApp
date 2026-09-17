@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+
+        <!-- Add task -->
+        <form #todoForm="ngForm" (ngSubmit)="addTodo(todoForm)" class="d-flex gap-2 mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="What needs to be done?"
+            [(ngModel)]="newTitle"
+            required
+            maxlength="200"
+            autocomplete="off"
+          />
+          <button type="submit" class="btn btn-primary flex-shrink-0" [disabled]="!newTitle?.trim()">
+            <i class="bi bi-plus-lg me-1"></i>Add
+          </button>
+        </form>
+
+        <div *ngIf="errorMessage" class="alert alert-danger py-2" role="alert">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Loading state -->
+        <div *ngIf="loading" class="text-center text-muted py-4">
+          <div class="spinner-border spinner-border-sm me-2"></div>Loading tasks...
+        </div>
+
+        <!-- Empty state -->
+        <div *ngIf="!loading && todos.length === 0" class="text-center text-muted py-4">
+          <i class="bi bi-clipboard-check fs-2 d-block mb-2"></i>
+          No tasks yet. Add one above to get started.
+        </div>
+
+        <!-- Task list -->
+        <ul class="list-group" *ngIf="!loading && todos.length > 0">
+          <li
+            class="list-group-item d-flex align-items-center"
+            *ngFor="let todo of todos"
+          >
+            <input
+              type="checkbox"
+              class="form-check-input me-3"
+              [checked]="todo.isComplete"
+              (change)="toggleComplete(todo)"
+              [attr.aria-label]="'Mark ' + todo.title + ' as complete'"
+            />
+            <span class="todo-title flex-grow-1" [class.completed]="todo.isComplete">
+              {{ todo.title }}
+            </span>
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-danger ms-2"
+              (click)="deleteTodo(todo)"
+              [attr.aria-label]="'Delete ' + todo.title"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Summary footer -->
+        <div *ngIf="!loading && todos.length > 0" class="d-flex justify-content-between text-muted small mt-3">
+          <span>{{ todos.length }} total</span>
+          <span>{{ completedCount }} completed</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
